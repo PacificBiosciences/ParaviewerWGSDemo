@@ -2,11 +2,10 @@
 
 <h1 align="center">Paraviewer WGS Demo</h1>
 
-<h4 align="center">Demo site for Paraviewer results from WGS HiFI samples</h3>
-<br></br>
+<h4 align="center">Demo site for Paraviewer results from WGS HiFi samples</h3>
 <br></br>
 
-This site shows automatically generated IGV visualizations fromm [Paraphase](https://github.com/PacificBiosciences/paraphase), as applied to 22 WGS samples. 
+This site shows Paraviewer-generated IGV visualizations from [Paraphase](https://github.com/PacificBiosciences/paraphase), as applied to 22 WGS samples. 
 
 These 22 samples were retrieved from the [Platinum Pedigree](https://www.nature.com/articles/s41592-025-02750-y) project's [open-access datasets](https://github.com/Platinum-Pedigree-Consortium/Platinum-Pedigree-Datasets).
 
