@@ -243,13 +243,11 @@ body.viewer-open {
 }
 
 /* Download button styles */
-.igv-download-btn,
 .btn-group-sm>.btn {
     font-size: 0.8rem;
     padding: 0.25rem 0.5rem;
 }
 
-.igv-download-btn:hover,
 .btn-group-sm>.btn-outline-primary:hover {
     background-color: #007bff;
     color: white;

@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function initializeApplication(data) {
     try {
         ndx = crossfilter(data.data);  // Use data.data instead of just data
-        var all = ndx.groupAll();
+        const all = ndx.groupAll();
 
         // Initial dimension creation using the helper function
         const dims = createDimensions(ndx);
@@ -97,8 +97,8 @@ function initializeApplication(data) {
         chromChart = dc.barChart("#chrom-chart");
 
         build_table(chromDimension.top(Infinity));
-        var chromGroup = chromDimension.group().reduceCount();
-        var nonEmptyChromGroup = remove_empty_bins(chromGroup);
+        const chromGroup = chromDimension.group().reduceCount();
+        const nonEmptyChromGroup = remove_empty_bins(chromGroup);
 
         setupCharts(ndx, all, nonEmptyChromGroup);
 
@@ -583,7 +583,9 @@ function createFilterableColumn(index, filterFn = 'filterByColumn') {
         targets: index,
         render: function (data, type, row) {
             if (type === 'display' && data != null) {
-                return `<a href="#" onclick="return filterByColumn('${data}', ${index}, event)" style="color: inherit; text-decoration: none;">${data}</a>`;
+                const filterLink = `<a href="#" onclick="return filterByColumn('${data}', ${index}, event)" ` +
+                    `style="color: inherit; text-decoration: none;">${data}</a>`;
+                return filterLink;
             }
             return data;
         }
@@ -790,7 +792,8 @@ function build_table(data) {
                         return `<div class="quick-view-container">
                                     ${infoIndicator}
                                     <button class="btn btn-sm btn-outline-primary quick-view-btn" 
-                                        onclick="quickViewImage('${escapeHtmlAttr(row.Chrom)}', ${row.Start}, ${row.End}, '${escapeHtmlAttr(row.Sample)}', '${escapeHtmlAttr(row.OrographerHTML)}', event)"
+                                        onclick="quickViewImage('${escapeHtmlAttr(row.Chrom)}', ${row.Start}, ${row.End}, ` +
+                                        `'${escapeHtmlAttr(row.Sample)}', '${escapeHtmlAttr(row.OrographerHTML)}', event)"
                                         title="View it orographer plot">
                                         <i class="fas fa-eye"></i>
                                     </button>
@@ -807,7 +810,9 @@ function build_table(data) {
                 targets: 1,
                 render: function (data, type, row) {
                     if (type === 'display' && data != null) {
-                        return `<a href="#" onclick="filterByColumn('${data}', 1, event)" style="color: inherit; text-decoration: none;">${data}</a>`;
+                        const chromLink = `<a href="#" onclick="filterByColumn('${data}', 1, event)" ` +
+                            `style="color: inherit; text-decoration: none;">${data}</a>`;
+                        return chromLink;
                     }
                     return data;
                 }
@@ -1167,7 +1172,7 @@ function resetFilter() {
 }
 
 /**
- * Download a file (IGV session, BAM, or BAI)
+ * Download a file (e.g. BAM or BAI) via a temporary anchor click.
  * @param {string} filePath - Path to the file
  * @param {Event} event - The click event
  */
@@ -1262,7 +1267,7 @@ function viewTrio(sample, paternalId, maternalId, event) {
     // Add new search function for Sample column (index 5)
     $.fn.dataTable.ext.search.push((settings, data) => {
         const sampleValue = data[5].toLowerCase();  // Sample is column 5
-        var sampleName = sample;
+        const sampleName = sample;
         if (sampleName.endsWith("-trio")) {
             sampleName = sampleName.slice(0, -5);
         }
